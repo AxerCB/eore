@@ -14,6 +14,7 @@
 		required_missions = { cro_reconquer_dalmatia }
 		position = 2
 		provinces_to_highlight = {
+			province_id = 136
 		}
 		trigger = {
 			owns = 136
@@ -73,9 +74,9 @@
 		provinces_to_highlight = {
 		}
 		trigger = {
-			num_of_light_ship = 5
-			num_of_galley = 5
-			num_of_transport = 5
+			num_of_light_ship = 15
+			num_of_galley = 10
+			num_of_transport = 10
 		}
 		effect = {
 			add_navy_tradition = 20
@@ -579,6 +580,14 @@ cro_5 = {
 		}
 		trigger = {
 			has_institution = industrialization
+			num_of_owned_provinces_with = {
+				value = 5
+				OR = {
+					has_building = furnace
+					has_building = weapons
+					has_building = wharf
+				}
+			}
 		}
 		effect = {
 			add_country_modifier = {
