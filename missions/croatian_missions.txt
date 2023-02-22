@@ -237,19 +237,19 @@ cro_2 = {
 		}
 	}
 	# Papal Branch
-	cro_great_schism = {
-		icon = new_st_peters_basilica
+	cro_defender_faith = {
+		icon = shield_of_christendom
 		required_missions = { cro_papal_alliance }
 		position = 7
 		provinces_to_highlight = {
 			
 		}
 		trigger = {
-			religion = catholic
+			is_defender_of_faith = yes
 		}
 		effect = {
 			add_country_modifier = {
-				name = "cro_mod_schism"
+				name = "cro_mod_defender"
 				duration = 7300
 			}
 		}
@@ -257,27 +257,26 @@ cro_2 = {
 			factor = 75	#Default
 		}
 	}
-	cro_sword_counter = {
-		icon = the_holy_league
-		required_missions = { cro_great_schism }
-		position = 8
-		provinces_to_highlight = {
+	# cro_great_schism = {
+	# 	icon = new_st_peters_basilica
+	# 	required_missions = { cro_defender_faith }
+	# 	position = 8
+	# 	provinces_to_highlight = {
 			
-		}
-		trigger = {
-			current_age = age_of_reformation
-			has_country_modifier = counter_reformation
-		}
-		effect = {
-			add_country_modifier = {
-				name = "cro_mod_counter"
-				duration = 7300
-			}
-		}
-		ai_weight = {
-			factor = 75	#Default
-		}
-	}
+	# 	}
+	# 	trigger = {
+	# 		religion = catholic
+	# 	}
+	# 	effect = {
+	# 		add_country_modifier = {
+	# 			name = "cro_mod_schism"
+	# 			duration = 7300
+	# 		}
+	# 	}
+	# 	ai_weight = {
+	# 		factor = 75	#Default
+	# 	}
+	# }
 }
 
 cro_3 = {
@@ -413,19 +412,39 @@ cro_3 = {
 			factor = 75	#Default
 		}
 	}
-	cro_defender_faith = {
-		icon = shield_of_christendom
+	cro_cardinal = {
+		icon = influence_the_church
 		required_missions = { cro_papal_alliance }
 		position = 7
 		provinces_to_highlight = {
 			
 		}
 		trigger = {
-			is_defender_of_faith = yes
+			has_cardinal = yes
 		}
 		effect = {
 			add_country_modifier = {
-				name = "cro_mod_defender"
+				name = "cro_mod_cardinal"
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+	cro_pope = {
+		icon = sway_the_pope
+		required_missions = { cro_cardinal }
+		position = 8
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			is_papal_controller = yes
+		}
+		effect = {
+			add_country_modifier = {
+				name = "cro_mod_pope"
 				duration = 7300
 			}
 		}
@@ -569,39 +588,20 @@ cro_4 = {
 		}
 	}
 	# Papal Branch
-	cro_cardinal = {
-		icon = influence_the_church
+	cro_sword_counter = {
+		icon = the_holy_league
 		required_missions = { cro_papal_alliance }
 		position = 7
 		provinces_to_highlight = {
 			
 		}
 		trigger = {
-			has_cardinal = yes
+			current_age = age_of_reformation
+			has_country_modifier = counter_reformation
 		}
 		effect = {
 			add_country_modifier = {
-				name = "cro_mod_cardinal"
-				duration = 7300
-			}
-		}
-		ai_weight = {
-			factor = 75	#Default
-		}
-	}
-	cro_pope = {
-		icon = sway_the_pope
-		required_missions = { cro_cardinal }
-		position = 8
-		provinces_to_highlight = {
-			
-		}
-		trigger = {
-			is_papal_controller = yes
-		}
-		effect = {
-			add_country_modifier = {
-				name = "cro_mod_pope"
+				name = "cro_mod_counter"
 				duration = 7300
 			}
 		}
