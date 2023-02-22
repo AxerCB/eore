@@ -8,7 +8,7 @@
 	}
 	has_country_shield = yes
 	
-
+	# Main Branch
 	cro_throne_diocletian = {
 		icon = dalmatian_conquest
 		required_missions = { cro_reconquer_dalmatia }
@@ -89,7 +89,6 @@
 			factor = 75	#Default
 		}
 	}
-
 	
 	cro_dominate_trade = {
 		icon = reform_the_monte
@@ -136,6 +135,7 @@ cro_2 = {
 	}
 	has_country_shield = yes
 	
+	# Main Branch
 	cro_reconquer_dalmatia = {
 		icon = adriatic_access
 		required_missions = {  }
@@ -236,7 +236,48 @@ cro_2 = {
 			factor = 75	#Default
 		}
 	}
-	
+	# Papal Branch
+	cro_great_schism = {
+		icon = new_st_peters_basilica
+		required_missions = { cro_papal_alliance }
+		position = 7
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			religion = catholic
+		}
+		effect = {
+			add_country_modifier = {
+				name = "cro_mod_schism"
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+	cro_sword_counter = {
+		icon = the_holy_league
+		required_missions = { cro_great_schism }
+		position = 8
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			current_age = age_of_reformation
+			has_country_modifier = counter_reformation
+		}
+		effect = {
+			add_country_modifier = {
+				name = "cro_mod_counter"
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
 }
 
 cro_3 = {
@@ -249,6 +290,7 @@ cro_3 = {
 	}
 	has_country_shield = yes
 
+	# Main Branch
 	cro_unify_realm = {
 		icon = mission_monarch_in_throne_room
 		required_missions = { cro_claim_ragusa cro_reclaim_bosnia }
@@ -349,6 +391,47 @@ cro_3 = {
 				duration = 7300
 			}
 		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+	# Papal Branch
+	cro_papal_alliance = {
+		icon = catholic_confraternity
+		required_missions = {}
+		position = 6
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			alliance_with = PAP
+		}
+		effect = {
+			add_papal_influence = 25
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+	cro_defender_faith = {
+		icon = shield_of_christendom
+		required_missions = { cro_papal_alliance }
+		position = 7
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			is_defender_of_faith = yes
+		}
+		effect = {
+			add_country_modifier = {
+				name = "cro_mod_defender"
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 }
 
@@ -362,6 +445,7 @@ cro_4 = {
 	}
 	has_country_shield = yes
 
+	# Main Branch
 	cro_reconquer_slavonia = {
 		icon = mission_cannons_firing
 		required_missions = {  }
@@ -484,6 +568,47 @@ cro_4 = {
 			factor = 75	#Default
 		}
 	}
+	# Papal Branch
+	cro_cardinal = {
+		icon = influence_the_church
+		required_missions = { cro_papal_alliance }
+		position = 7
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			has_cardinal = yes
+		}
+		effect = {
+			add_country_modifier = {
+				name = "cro_mod_cardinal"
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+	cro_pope = {
+		icon = sway_the_pope
+		required_missions = { cro_cardinal }
+		position = 8
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			is_papal_controller = yes
+		}
+		effect = {
+			add_country_modifier = {
+				name = "cro_mod_pope"
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
 }
 
 cro_5 = {
@@ -570,6 +695,9 @@ cro_5 = {
 				}
 			}
 		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 	cro_industrialization = {
 		icon = mission_rb_build_furnaces
@@ -594,6 +722,9 @@ cro_5 = {
 				name = "cro_mod_industrialized"
 				duration = 7300
 			}
+		}
+		ai_weight = {
+			factor = 75	#Default
 		}
 	}
 }

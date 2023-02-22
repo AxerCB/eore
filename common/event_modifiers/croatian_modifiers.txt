@@ -31,3 +31,22 @@ cro_mod_dominate_trade = {
 	global_trade_power = 0.1
 	trade_efficiency = 0.15
 }
+cro_mod_schism = {
+	missionaries = 1
+	global_heretic_missionary_strength = 0.03
+	tolerance_heretic = -1
+}
+cro_mod_counter = {
+	morale_damage = 0.05
+	enforce_religion_cost = -0.5
+}
+cro_mod_defender = {
+	papal_influence = 1
+}
+cro_mod_cardinal = {
+	tolerance_own = 1
+}
+cro_mod_pope = {
+	papal_influence_from_cardinals = 0.2
+	curia_powers_cost = -0.25
+}
