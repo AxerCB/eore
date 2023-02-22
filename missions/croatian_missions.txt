@@ -89,11 +89,32 @@
 			factor = 75	#Default
 		}
 	}
+	cro_overshadow_venice = {
+		icon = mission_control_venice
+		required_missions = { cro_croatian_fleet }
+		position = 5
+		provinces_to_highlight = {
+			province_id = 112
+		}
+		trigger = {
+			112 = {
+				is_strongest_trade_power = CRO
+			}
+		}
+		effect = {
+			add_dip_power = 100
+			add_mercantilism = 2
+			add_claim = 112
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
 	
 	cro_dominate_trade = {
 		icon = reform_the_monte
-		required_missions = { cro_croatian_fleet }
-		position = 5
+		required_missions = { cro_overshadow_venice }
+		position = 6
 		provinces_to_highlight = {
 			OR = {
 				province_id = 137
@@ -257,10 +278,47 @@ cro_2 = {
 			factor = 75	#Default
 		}
 	}
+	cro_renewed_crusade = {
+		icon = the_latin_empire
+		required_missions = { cro_defender_faith }
+		position = 8
+		provinces_to_highlight = {
+			OR = {
+				region = anatolia_region
+				region = mashriq_region
+			}
+			owner = {
+				NOT = {
+					OR = {
+						religion = catholic
+						religion = chalcedonian
+					}
+				}
+			}
+		}
+		trigger = {
+			num_of_provinces_owned_or_owned_by_subjects_with = {
+				value = 10
+				OR = {
+					region = anatolia_region
+					region = mashriq_region
+				}
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = "cro_mod_crusader"
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
 	# cro_great_schism = {
 	# 	icon = new_st_peters_basilica
-	# 	required_missions = { cro_defender_faith }
-	# 	position = 8
+	# 	required_missions = { }
+	# 	position = 9
 	# 	provinces_to_highlight = {
 			
 	# 	}
@@ -609,6 +667,71 @@ cro_4 = {
 			factor = 75	#Default
 		}
 	}
+	cro_imperial_question = {
+		icon = glory_to_von_habsburg
+		required_missions = { cro_sword_counter }
+		position = 8
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			OR = {
+				emperor = {
+					alliance_with = CRO
+				}
+				AND = {
+					emperor = {
+						capital_scope = {
+							controlled_by = CRO
+						}
+					}
+					all_elector = {
+						capital_scope = {
+							controlled_by = CRO
+						}
+					}
+				}
+				NOT = {
+					hre_size = 1
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						hre_size = 1
+					}
+				}
+				add_mil_power = 100
+				add_prestige = 20
+				add_country_modifier = {
+					name = "cro_mod_dismantle_hre"
+					duration = 7300
+				}
+			}
+			else_if = {
+				limit = {
+					emperor = {
+						alliance_with = CRO
+					}
+				}
+				add_country_modifier = {
+					name = "cro_mod_support_hre"
+					duration = 7300
+				}
+			}
+			else = {
+				CRO = {
+					set_emperor = yes
+				}
+				hre_inheritable = yes
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
 }
 
 cro_5 = {
@@ -711,9 +834,10 @@ cro_5 = {
 			num_of_owned_provinces_with = {
 				value = 5
 				OR = {
-					has_building = furnace
 					has_building = weapons
 					has_building = wharf
+					has_building = textile
+					has_building = furnace
 				}
 			}
 		}
@@ -721,6 +845,46 @@ cro_5 = {
 			add_country_modifier = {
 				name = "cro_mod_industrialized"
 				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+	cro_illyrian_movement = {
+		icon = neapolitan_govenance
+		required_missions = { cro_industrialization }
+		position = 6
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			is_institution_enabled = nationalism
+			carinthia_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+			croatia_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+			slavonia_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+			east_adriatic_coast_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			CRO = {
+				capital_scope = {
+					add_institution_embracement = {
+						which = nationalism
+						value = 100
+					}
+				}
 			}
 		}
 		ai_weight = {

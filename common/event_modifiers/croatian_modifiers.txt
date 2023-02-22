@@ -50,3 +50,14 @@ cro_mod_pope = {
 	papal_influence_from_cardinals = 0.2
 	curia_powers_cost = -0.25
 }
+cro_mod_crusader = {
+	missionaries = 1
+	global_heathen_missionary_strength = 0.03
+}
+cro_mod_support_hre = {
+	diplomatic_reputation = 1
+}
+cro_mod_dismantle_hre = {
+	prestige = 1
+	stability_cost_to_declare_war = -1
+}
