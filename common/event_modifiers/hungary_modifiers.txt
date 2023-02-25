@@ -1,0 +1,46 @@
+hun_mod_gold = {
+	inflation_reduction = 5
+	gold_depletion_chance_modifier = -0.25
+}
+hun_mod_fiume = {
+	local_ship_repair = 0.33
+	local_build_time = -0.25
+	province_trade_power_modifier = 0.1
+}
+hun_mod_banate = {
+	local_manpower_modifier = 0.33
+	min_local_autonomy = 10
+	local_unrest = -2
+}
+hun_mod_farms = {
+	local_development_cost = -0.15
+	local_manpower_modifier = 0.1
+}
+hun_mod_mines = {
+	trade_goods_size_modifier = 0.1
+}
+hun_mod_fleet = {
+	naval_morale = 0.1
+	ship_durability = 0.05
+}
+hun_mod_budapest = {
+	development_cost_modifier = -0.2
+	local_prosperity_growth = 0.1
+}
+hun_mod_frontier = {
+	local_manpower_modifier = 0.5
+	local_missionary_strength = 1
+	local_religious_unity_contribution = -1
+	local_unrest = -1
+	local_tax_modifier = -0.25
+}
+hun_mod_royal_university = {
+	technology_cost = -0.15
+	idea_cost = -0.10
+	innovativeness_gain = 0.25
+}
+hun_mod_matthias_church = {
+	local_tax_modifier = 0.25
+	prestige = 1
+	local_unrest = -3
+}
