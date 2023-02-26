@@ -1,4 +1,4 @@
-hun_1 = {
+hun_mil_1 = {
 	slot = 1
 	generic = no
 	ai = yes
@@ -7,11 +7,325 @@ hun_1 = {
 		NOT = { map_setup = map_setup_random }
 	}
 	has_country_shield = yes
+
+	hun_succession = {
+		icon = the_hungarian_succession
+		required_missions = {  }
+		position = 1
+		provinces_to_highlight = {
+		}
+		trigger = {
+			is_subject = no
+			has_regency = no
+		}
+		effect = {
+			add_stability_or_adm_power = yes
+			croatia_area = {
+				if = {
+					limit = {
+						NOT = {
+							OR = {
+								is_core = ROOT
+								owned_by = ROOT
+							}
+						}
+					}
+					add_claim = ROOT
+				}
+			}
+			slavonia_area = {
+				if = {
+					limit = {
+						NOT = {
+							OR = {
+								is_core = ROOT
+								owned_by = ROOT
+							}
+						}
+					}
+					add_claim = ROOT
+				}
+			}
+		}
+		ai_weight = {
+			factor = 500 # Wants to solve crisis
+		}
+	}
+
+	hun_take_croatia = {
+		icon = take_the_bishoprics
+		required_missions = { hun_succession }
+		provinces_to_highlight = {
+			area = croatia_area
+			NOT = {
+				owned_by = ROOT
+			}
+		}
+		trigger = {
+			croatia_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			bosnia_area = {
+				if = {
+					limit = {
+						NOT = {
+							OR = {
+								is_core = ROOT
+								owned_by = ROOT
+							}
+						}
+					}
+					add_permanent_claim = ROOT
+				}
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+
+	hun_take_bosnia = {
+		icon = fight_bosnian_heresies
+		required_missions = { hun_take_croatia }
+		provinces_to_highlight = {
+			area = bosnia_area
+			NOT = {
+				owned_by = ROOT
+			}
+		}
+		trigger = {
+			bosnia_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			serbia_area = {
+				if = {
+					limit = {
+						NOT = {
+							owned_by = ROOT
+						}
+					}
+					add_permanent_claim = ROOT
+				}
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+
+	hun_take_serbia = {
+		icon = defeat_the_serbs
+		required_missions = { hun_take_bosnia }
+		provinces_to_highlight = {
+			area = serbia_area
+			NOT = {
+				owned_by = ROOT
+			}
+		}
+		trigger = {
+			serbia_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			east_adriatic_coast_area = {
+				if = {
+					limit = {
+						NOT = {
+							owned_by = ROOT
+						}
+					}
+					add_permanent_claim = ROOT
+				}
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+
+	hun_take_dalmatia = {
+		icon = adriatic_access
+		required_missions = { hun_take_serbia }
+		provinces_to_highlight = {
+			area = east_adriatic_coast_area
+			NOT = {
+				owned_by = ROOT
+			}
+		}
+		trigger = {
+			east_adriatic_coast_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			137 = {
+				if = {
+					limit = {
+						NOT = {
+							owned_by = ROOT
+						}
+					}
+					add_permanent_claim = ROOT
+				}
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+
+	hun_take_ragusa = {
+		icon = capture_adriatic_ports
+		required_missions = { hun_take_dalmatia }
+		provinces_to_highlight = {
+			province_id = 137
+			NOT = {
+				owned_by = ROOT
+			}
+		}
+		trigger = {
+			137 = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			albania_area = {
+				if = {
+					limit = {
+						NOT = {
+							owned_by = ROOT
+						}
+					}
+					add_permanent_claim = ROOT
+				}
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+
+	hun_take_albania = {
+		icon = pacify_the_albanian_lands
+		required_missions = { hun_take_ragusa }
+		provinces_to_highlight = {
+			area = albania_area
+			NOT = {
+				owned_by = ROOT
+			}
+		}
+		trigger = {
+			albania_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			northern_greece_area = {
+				if = {
+					limit = {
+						NOT = {
+							owned_by = ROOT
+						}
+					}
+					add_permanent_claim = ROOT
+				}
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+
+	hun_take_epirus = {
+		icon = mission_occupy_alexandria
+		required_missions = { hun_take_albania }
+
+	}
+
+	hun_take_athens = {
+		icon = mission_invade_island
+		required_missions = { hun_take_epirus }
+
+	}
+}
+
+hun_mil_2 = {
+	slot = 2
+	generic = no
+	ai = yes
+	potential = {
+		tag = HUN
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+
 	
+	hun_port_fiume = {
+		icon = end_genoese_competition
+		required_missions = { hun_take_croatia }
+		position = 3
+		provinces_to_highlight = {
+			province_id = 4752
+		}
+		trigger = {
+			4752 = {
+				owned_by = ROOT
+				has_building = dock
+			}
+		}
+		effect = {
+			4752 = {
+				ROOT = {
+					heavy_ship = PREV
+				}
+				add_province_modifier = {
+					name = "hun_mod_fiume"
+					duration = -1
+				}
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+
+	hun_royal_fleet = {
+		icon = mission_aragonese_navy
+		required_missions = { hun_port_fiume }
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			num_of_heavy_ship = 5
+			num_of_light_ship = 10
+			num_of_galley = 15
+		}
+		effect = {
+			add_prestige = 10
+			add_country_modifier = {
+				name = "hun_mod_fleet"
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
 
 	hun_slavic_banate = {
 		icon = mission_eastern_european_city
 		required_missions = {  }
+		position = 5
 		provinces_to_highlight = {
 			ROOT = {
 				all_owned_province = {
@@ -51,7 +365,6 @@ hun_1 = {
 			factor = 75	#Default
 		}
 	}
-	# vojna krajina mission 
 	hun_military_frontier = {
 		icon = mission_cossack_cavalry
 		required_missions = { hun_slavic_banate }
@@ -102,11 +415,153 @@ hun_1 = {
 		}
 	}
 
+}
+
+hun_mil_3 = {
+	slot = 3
+	generic = no
+	ai = yes
+	potential = {
+		tag = HUN
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+
+	hun_take_nitra = {
+		icon = alpine_defenses
+		required_missions = { hun_take_transylvania }
+		position = 2
+	}
+
+	hun_take_macedonia = {
+		icon = mission_conquer_5_states
+		required_missions = { hun_city_constantinople }
+		position = 9
+	}
+}
+
+hun_mil_4 = {
+	slot = 4
+	generic = no
+	ai = yes
+	potential = {
+		tag = HUN
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+
+	hun_take_transylvania = {
+		icon = mission_develop_the_scandes
+		provinces_to_highlight = {
+			NOT = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		trigger = {
+			num_of_owned_provinces_with = {
+				value = 5
+				has_tax_building_trigger = yes
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = "hun_funded_paulines"
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+
+	hun_secure_carpathia = {
+		icon = alpine_fortifications
+		required_missions = { hun_take_nitra hun_take_maramaros}
+		position = 3
+	}
+
+	hun_fortify_realm = {
+		icon = protect_against_the_turks
+	}
+	
+	hun_push_back_avars = {
+		icon = mission_non-western_cavalry_raid
+	}
+
+	hun_take_wallachia = {
+		icon = fortress_of_belgrade
+
+	}
+
+	hun_take_bulgaria = {
+		icon = mission_conquer_50_development
+	}
+
+	hun_city_constantinople = {
+		icon = "mission_city_of_the_world's_desire"
+	}
+
+	hun_asia_minor = {
+		icon = mission_non-western_soldiers
+	}
+}
+
+hun_mil_5 = {
+	slot = 5
+	generic = no
+	ai = yes
+	potential = {
+		tag = HUN
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+
+	hun_take_maramaros = {
+		icon = take_the_littoral
+		required_missions = { hun_take_transylvania }
+		position = 2
+	}
+
+	hun_mobilize_army = {
+		icon = mission_assemble_an_army
+		required_missions = { hun_secure_carpathia }
+		position = 4
+	}
+
+	hun_black_army = {
+		icon = gory_to_the_black_army
+		required_missions = { hun_mobilize_army }
+	}
+
+	hun_take_moldavia = {
+		icon = mission_cannons_firing
+		required_missions = { hun_take_wallachia }
+		position = 7
+	}
+
+	hun_bulwark_christianity = {
+		icon = shield_of_christendom
+		required_missions = { hun_take_moldavia hun_asia_minor }
+		position = 10
+	}
+}
+
+
+hun_admin_1 = {
+	slot = 1
+	generic = no
+	ai = yes
+	potential = {
+		tag = HUN
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
 
 	hun_support_monestaries = {
 		icon = fund_the_monasteries
 		required_missions = { hun_improve_economy }
-		position = 4
+		position = 13
 		provinces_to_highlight = {
 			owned_by = ROOT
 			has_tax_building_trigger = no
@@ -180,7 +635,7 @@ hun_1 = {
 	}
 }
 
-hun_2 = {
+hun_admin_2 = {
 	slot = 2
 	generic = no
 	ai = yes
@@ -192,62 +647,11 @@ hun_2 = {
 
 	# Development Missions
 
-	hun_succession = {
-		icon = the_hungarian_succession
-		required_missions = {  }
-		position = 2
-		provinces_to_highlight = {
-		}
-		trigger = {
-			is_subject = no
-			has_regency = no
-		}
-		effect = {
-			add_stability_or_adm_power = yes
-		}
-		ai_weight = {
-			factor = 500 # Wants to solve crisis
-		}
-	}
 
-	hun_strong_government = {
-		icon = a_strong_government
-		required_missions = { hun_buda }
-		position = 6
-		provinces_to_highlight = {
-		}
-		trigger = {
-			reform_level = 10
-			crown_land_share = 80
-		}
-		effect = {
-			add_adm_power = 25
-			add_country_modifier = {
-				name = "hun_golden_age_of_hungary"
-				duration = 9125
-			}
-		}
-		ai_weight = {
-			factor = 75	#Default
-		}
-	}
-
-}
-
-hun_3 = {
-	slot = 3
-	generic = no
-	ai = yes
-	potential = {
-		tag = HUN
-		NOT = { map_setup = map_setup_random }
-	}
-	has_country_shield = yes
-
-	# Development Missions
 	hun_kremnica_gold = {
 		icon = mission_zambezi_gold
 		required_missions = {  }
+		position = 11
 		provinces_to_highlight = {
 			province_id = 154
 		}
@@ -268,9 +672,46 @@ hun_3 = {
 			factor = 75	#Default
 		}
 	}
+
+	hun_strong_government = {
+		icon = a_strong_government
+		required_missions = { hun_buda }
+		position = 15
+		provinces_to_highlight = {
+		}
+		trigger = {
+			reform_level = 10
+			crown_land_share = 80
+		}
+		effect = {
+			add_adm_power = 25
+			add_country_modifier = {
+				name = "hun_golden_age_of_hungary"
+				duration = 9125
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+
+}
+
+hun_admin_3 = {
+	slot = 3
+	generic = no
+	ai = yes
+	potential = {
+		tag = HUN
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+
+	# Development Missions
 	hun_carpathian_mines = {
 		icon = claim_the_borderlands
-		required_missions = { hun_kremnica_gold }
+		required_missions = { }
+		position = 11
 		provinces_to_highlight = {
 			region = carpathia_region
 			OR = {
@@ -317,7 +758,7 @@ hun_3 = {
 
 	hun_improve_economy = {
 		icon = dominant_economy
-		required_missions = { hun_succession hun_transdanubian_agriculture hun_carpathian_mines }
+		required_missions = { hun_kremnica_gold hun_transdanubian_agriculture hun_carpathian_mines }
 		provinces_to_highlight = {
 			
 		}
@@ -412,7 +853,7 @@ hun_3 = {
 
 }
 
-hun_4 = {
+hun_admin_4 = {
 	slot = 4
 	generic = no
 	ai = yes
@@ -426,7 +867,7 @@ hun_4 = {
 	hun_transdanubian_agriculture = {
 		icon = mission_pol_tend_east
 		required_missions = {  }
-		position = 2
+		position = 11
 		provinces_to_highlight = {
 			area = transdanubia_area
 			owned_by = ROOT
@@ -460,7 +901,7 @@ hun_4 = {
 	hun_university = {
 		icon = nagyszombat_university
 		required_missions = { hun_library }
-		position = 5
+		position = 14
 		provinces_to_highlight = {
 			province_id = 1772
 		}
@@ -519,7 +960,7 @@ hun_4 = {
 
 }
 
-hun_5 = {
+hun_admin_5 = {
 	slot = 5
 	generic = no
 	ai = yes
@@ -529,60 +970,10 @@ hun_5 = {
 	}
 	has_country_shield = yes
 
-	hun_port_fiume = {
-		icon = end_genoese_competition
-		required_missions = {  }
-		provinces_to_highlight = {
-			province_id = 4752
-		}
-		trigger = {
-			4752 = {
-				owned_by = ROOT
-				has_building = dock
-			}
-		}
-		effect = {
-			4752 = {
-				ROOT = {
-					heavy_ship = PREV
-				}
-				add_province_modifier = {
-					name = "hun_mod_fiume"
-					duration = -1
-				}
-			}
-		}
-		ai_weight = {
-			factor = 75	#Default
-		}
-	}
-
-	hun_royal_fleet = {
-		icon = mission_aragonese_navy
-		required_missions = { hun_port_fiume }
-		provinces_to_highlight = {
-			
-		}
-		trigger = {
-			num_of_heavy_ship = 5
-			num_of_light_ship = 10
-			num_of_galley = 15
-		}
-		effect = {
-			add_prestige = 10
-			add_country_modifier = {
-				name = "hun_mod_fleet"
-				duration = 7300
-			}
-		}
-		ai_weight = {
-			factor = 75	#Default
-		}
-	}
 
 	hun_manufactories = {
 		icon = mission_have_manufactories
-		position = 4
+		position = 13
 		required_missions = { hun_improve_economy }
 		provinces_to_highlight = {
 			
