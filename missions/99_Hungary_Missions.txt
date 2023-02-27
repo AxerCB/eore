@@ -324,7 +324,7 @@ hun_mil_2 = {
 
 	hun_slavic_banate = {
 		icon = mission_eastern_european_city
-		required_missions = {  }
+		required_missions = { hun_take_serbia }
 		position = 5
 		provinces_to_highlight = {
 			ROOT = {
@@ -415,6 +415,11 @@ hun_mil_2 = {
 		}
 	}
 
+	hun_balkan_hegemon = {
+		icon = protectors_of_christendom
+		required_missions = { hun_take_athens hun_take_macedonia }
+		position = 10
+	}
 }
 
 hun_mil_3 = {
@@ -453,6 +458,8 @@ hun_mil_4 = {
 	hun_take_transylvania = {
 		icon = mission_develop_the_scandes
 		provinces_to_highlight = {
+			OR = {
+			}
 			NOT = {
 				country_or_non_sovereign_subject_holds = ROOT
 			}
@@ -482,27 +489,33 @@ hun_mil_4 = {
 
 	hun_fortify_realm = {
 		icon = protect_against_the_turks
+		required_missions = { hun_secure_carpathia }
 	}
 	
 	hun_push_back_avars = {
 		icon = mission_non-western_cavalry_raid
+		required_missions = { hun_fortify_realm hun_mobilize_army }
 	}
 
 	hun_take_wallachia = {
 		icon = fortress_of_belgrade
+		required_missions = { hun_push_back_avars }
 
 	}
 
 	hun_take_bulgaria = {
 		icon = mission_conquer_50_development
+		required_missions = { hun_take_wallachia }
 	}
 
 	hun_city_constantinople = {
 		icon = "mission_city_of_the_world's_desire"
+		required_missions = { hun_take_bulgaria }
 	}
 
 	hun_asia_minor = {
 		icon = mission_non-western_soldiers
+		required_missions = { hun_city_constantinople }
 	}
 }
 
