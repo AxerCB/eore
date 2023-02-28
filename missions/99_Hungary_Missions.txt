@@ -21,30 +21,18 @@ hun_mil_1 = {
 		effect = {
 			add_stability_or_adm_power = yes
 			croatia_area = {
-				if = {
-					limit = {
-						NOT = {
-							OR = {
-								is_core = ROOT
-								owned_by = ROOT
-							}
-						}
-					}
-					add_claim = ROOT
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
 				}
+				add_permanent_claim = ROOT
 			}
 			slavonia_area = {
-				if = {
-					limit = {
-						NOT = {
-							OR = {
-								is_core = ROOT
-								owned_by = ROOT
-							}
-						}
-					}
-					add_claim = ROOT
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
 				}
+				add_permanent_claim = ROOT
 			}
 		}
 		ai_weight = {
@@ -56,9 +44,12 @@ hun_mil_1 = {
 		icon = take_the_bishoprics
 		required_missions = { hun_succession }
 		provinces_to_highlight = {
-			area = croatia_area
+			OR = {
+				area = slavonia_area
+				area = croatia_area
+			}
 			NOT = {
-				owned_by = ROOT
+				country_or_non_sovereign_subject_holds = ROOT
 			}
 		}
 		trigger = {
@@ -66,20 +57,20 @@ hun_mil_1 = {
 				type = all
 				country_or_non_sovereign_subject_holds = ROOT
 			}
+			slavonia_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
 		}
 		effect = {
+			add_prestige = 5
+			add_mil_power = 25
 			bosnia_area = {
-				if = {
-					limit = {
-						NOT = {
-							OR = {
-								is_core = ROOT
-								owned_by = ROOT
-							}
-						}
-					}
-					add_permanent_claim = ROOT
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
 				}
+				add_permanent_claim = ROOT
 			}
 		}
 		ai_weight = {
@@ -93,7 +84,7 @@ hun_mil_1 = {
 		provinces_to_highlight = {
 			area = bosnia_area
 			NOT = {
-				owned_by = ROOT
+				country_or_non_sovereign_subject_holds = ROOT
 			}
 		}
 		trigger = {
@@ -103,15 +94,20 @@ hun_mil_1 = {
 			}
 		}
 		effect = {
+			add_mil_power = 25
 			serbia_area = {
-				if = {
-					limit = {
-						NOT = {
-							owned_by = ROOT
-						}
-					}
-					add_permanent_claim = ROOT
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
 				}
+				add_permanent_claim = ROOT
+			}
+			rascia_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
 			}
 		}
 		ai_weight = {
@@ -125,7 +121,7 @@ hun_mil_1 = {
 		provinces_to_highlight = {
 			area = serbia_area
 			NOT = {
-				owned_by = ROOT
+				country_or_non_sovereign_subject_holds = ROOT
 			}
 		}
 		trigger = {
@@ -133,17 +129,18 @@ hun_mil_1 = {
 				type = all
 				country_or_non_sovereign_subject_holds = ROOT
 			}
+			rascia_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
 		}
 		effect = {
 			east_adriatic_coast_area = {
-				if = {
-					limit = {
-						NOT = {
-							owned_by = ROOT
-						}
-					}
-					add_permanent_claim = ROOT
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
 				}
+				add_permanent_claim = ROOT
 			}
 		}
 		ai_weight = {
@@ -157,7 +154,7 @@ hun_mil_1 = {
 		provinces_to_highlight = {
 			area = east_adriatic_coast_area
 			NOT = {
-				owned_by = ROOT
+				country_or_non_sovereign_subject_holds = ROOT
 			}
 		}
 		trigger = {
@@ -167,6 +164,7 @@ hun_mil_1 = {
 			}
 		}
 		effect = {
+			add_mil_power = 25
 			137 = {
 				if = {
 					limit = {
@@ -189,7 +187,7 @@ hun_mil_1 = {
 		provinces_to_highlight = {
 			province_id = 137
 			NOT = {
-				owned_by = ROOT
+				country_or_non_sovereign_subject_holds = ROOT
 			}
 		}
 		trigger = {
@@ -198,15 +196,14 @@ hun_mil_1 = {
 			}
 		}
 		effect = {
+			add_mercantilism = 2
+			add_prestige = 10
 			albania_area = {
-				if = {
-					limit = {
-						NOT = {
-							owned_by = ROOT
-						}
-					}
-					add_permanent_claim = ROOT
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
 				}
+				add_permanent_claim = ROOT
 			}
 		}
 		ai_weight = {
@@ -220,7 +217,7 @@ hun_mil_1 = {
 		provinces_to_highlight = {
 			area = albania_area
 			NOT = {
-				owned_by = ROOT
+				country_or_non_sovereign_subject_holds = ROOT
 			}
 		}
 		trigger = {
@@ -230,15 +227,13 @@ hun_mil_1 = {
 			}
 		}
 		effect = {
+			add_mil_power = 25
 			northern_greece_area = {
-				if = {
-					limit = {
-						NOT = {
-							owned_by = ROOT
-						}
-					}
-					add_permanent_claim = ROOT
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
 				}
+				add_permanent_claim = ROOT
 			}
 		}
 		ai_weight = {
@@ -533,12 +528,34 @@ hun_mil_5 = {
 		icon = take_the_littoral
 		required_missions = { hun_take_transylvania }
 		position = 2
+		provinces_to_highlight = {
+			province_id = 1952
+		}
+		trigger = {
+			1952 = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			1952 = {
+				add_province_modifier = {
+					name = "hun_mod_fort"
+					duration = -1
+				}
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 
 	hun_mobilize_army = {
 		icon = mission_assemble_an_army
 		required_missions = { hun_secure_carpathia }
 		position = 4
+		trigger = {
+			army_size_percentage = 100
+		}
 	}
 
 	hun_black_army = {

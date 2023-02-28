@@ -44,3 +44,7 @@ hun_mod_matthias_church = {
 	prestige = 1
 	local_unrest = -3
 }
+hun_mod_fort = {
+	local_defensiveness = 0.25
+	hostile_attrition = 1
+}
