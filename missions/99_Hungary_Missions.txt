@@ -499,7 +499,7 @@ hun_mil_4 = {
 	}
 
 	hun_take_bulgaria = {
-		icon = mission_conquer_50_development
+		icon = mission_crusade_for_varna
 		required_missions = { hun_take_wallachia }
 	}
 
@@ -1044,6 +1044,29 @@ hun_admin_5 = {
 		}
 	}
 	
+	hun_railroads = {
+		icon = w_railroad
+		required_missions = { hun_industry }
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			num_of_owned_provinces_with = {
+				value = 10
+				has_building = railroad
+			}
+		}
+		effect = {
+			add_adm_power = 25
+			add_country_modifier = {
+				name = hun_mod_railroads
+				duration = -1
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
 	
 }
 

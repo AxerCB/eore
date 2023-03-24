@@ -48,3 +48,7 @@ hun_mod_fort = {
 	local_defensiveness = 0.25
 	hostile_attrition = 1
 }
+hun_mod_railroads = {
+	local_friendly_movement_speed = 0.15
+	global_supply_limit_modifier = 0.1
+}

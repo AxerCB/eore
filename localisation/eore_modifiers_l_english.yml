@@ -57,3 +57,5 @@
  desc_hun_mod_royal_university:0 "The Nagyszombat University has been moved per the instruction of Hungarian leadership."
  hun_mod_fort:0 "Fortified Province"
  desc_hun_mod_fort:0 "This province has been fortified to defend the realm."
+ hun_mod_railroads:0 "Railroad Network"
+ desc_hun_mod_railroads:0 "An advanced railroad network has been built leading to a great increase in logistics."
