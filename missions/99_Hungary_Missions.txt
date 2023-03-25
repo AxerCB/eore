@@ -326,6 +326,39 @@ hun_mil_2 = {
 	}
 	has_country_shield = yes
 
+	hun_bohemian_intervention = {
+		icon = bohemian_commonwealth
+		required_missions = { hun_succession }
+		position = 2
+		provinces_to_highlight = {
+			area = moravia_area
+			NOT = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		trigger = {
+			OR = {
+				BOH = {
+					religion = hussite
+				}
+				moravia_area = {
+					type = all
+					country_or_non_sovereign_subject_holds = ROOT
+				}
+			}
+		}
+		effect = {
+			add_adm_power = 25
+			if = {
+				limit = { exists = BOH }
+				add_casus_belli = {
+					type = cb_restore_personal_union
+					target = BOH
+					months = 300
+				}
+			}
+		}
+	}
 	
 	hun_port_fiume = {
 		icon = end_genoese_competition
