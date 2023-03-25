@@ -48,7 +48,39 @@ hun_mod_fort = {
 	local_defensiveness = 0.25
 	hostile_attrition = 1
 }
+hun_mod_roads = {
+	global_prov_trade_power_modifier = 0.1
+	movement_speed = 0.15
+}
 hun_mod_railroads = {
 	local_friendly_movement_speed = 0.15
 	global_supply_limit_modifier = 0.1
+}
+hun_mod_secured = {
+	global_autonomy = -0.05
+}
+hun_mod_power = {
+	legitimacy = 1
+	diplomatic_reputation = 1
+}
+hun_mod_mobilized = {
+	global_manpower_modifier = 0.05
+	manpower_recovery_speed = 0.1
+	land_maintenance_modifier = -0.1
+}
+hun_mod_defeated_avars = {
+	land_morale = 0.15
+	shock_damage_received = -0.05
+}
+hun_mod_rival = {
+	land_morale = 0.05
+	ae_impact = -0.05
+}
+hun_mod_macedon = {
+	morale_damage = 0.05
+}
+hun_mod_hegemon = {
+	legitimacy = 1
+	prestige = 1
+	fire_damage = 0.05
 }

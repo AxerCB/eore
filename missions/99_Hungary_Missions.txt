@@ -45,26 +45,31 @@ hun_mil_1 = {
 		required_missions = { hun_succession }
 		provinces_to_highlight = {
 			OR = {
-				area = slavonia_area
-				area = croatia_area
+				province_id = 131
+				province_id = 4756
+				province_id = 4752
+				province_id = 1826
 			}
 			NOT = {
 				country_or_non_sovereign_subject_holds = ROOT
 			}
 		}
 		trigger = {
-			croatia_area = {
-				type = all
+			131 = {
 				country_or_non_sovereign_subject_holds = ROOT
 			}
-			slavonia_area = {
-				type = all
+			4756 = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+			4752 = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+			1826 = {
 				country_or_non_sovereign_subject_holds = ROOT
 			}
 		}
 		effect = {
-			add_prestige = 5
-			add_mil_power = 25
+			add_mil_power = 15
 			bosnia_area = {
 				limit = {
 					NOT = { is_core = ROOT }
@@ -94,7 +99,7 @@ hun_mil_1 = {
 			}
 		}
 		effect = {
-			add_mil_power = 25
+			add_mil_power = 15
 			serbia_area = {
 				limit = {
 					NOT = { is_core = ROOT }
@@ -135,12 +140,18 @@ hun_mil_1 = {
 			}
 		}
 		effect = {
+			add_mil_power = 15
+			add_prestige = 5
 			east_adriatic_coast_area = {
 				limit = {
 					NOT = { is_core = ROOT }
 					NOT = { is_permanent_claim = ROOT }
 				}
 				add_permanent_claim = ROOT
+			}
+			add_country_modifier = {
+				name = hun_mod_rival
+				duration = 7300
 			}
 		}
 		ai_weight = {
@@ -164,7 +175,7 @@ hun_mil_1 = {
 			}
 		}
 		effect = {
-			add_mil_power = 25
+			add_mil_power = 10
 			137 = {
 				if = {
 					limit = {
@@ -196,8 +207,7 @@ hun_mil_1 = {
 			}
 		}
 		effect = {
-			add_mercantilism = 2
-			add_prestige = 10
+			add_mercantilism = 3
 			albania_area = {
 				limit = {
 					NOT = { is_core = ROOT }
@@ -227,7 +237,7 @@ hun_mil_1 = {
 			}
 		}
 		effect = {
-			add_mil_power = 25
+			add_mil_power = 15
 			northern_greece_area = {
 				limit = {
 					NOT = { is_core = ROOT }
@@ -244,13 +254,65 @@ hun_mil_1 = {
 	hun_take_epirus = {
 		icon = mission_occupy_alexandria
 		required_missions = { hun_take_albania }
-
+		provinces_to_highlight = {
+			OR = {
+				province_id = 144
+				province_id = 4699
+			}
+			NOT = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		trigger = {
+			EPI = {
+				OR = {
+					exists = NO
+					is_subject_of = ROOT
+				}
+			}
+			144 = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+			4699 = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			add_mil_power = 20
+			morea_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 
 	hun_take_athens = {
-		icon = w_parthenon
+		icon = w_athens_city
 		required_missions = { hun_take_epirus }
-
+		provinces_to_highlight = {
+			province_id = 146
+			NOT = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		trigger = {
+			146 = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			add_mil_power = 15
+			add_mercantilism = 1
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 }
 
@@ -414,6 +476,28 @@ hun_mil_2 = {
 		icon = protectors_of_christendom
 		required_missions = { hun_take_athens hun_take_macedonia }
 		position = 10
+		provinces_to_highlight = {
+			region = balkan_region
+			NOT = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		trigger = {
+			balkan_region = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			add_adm_power = 100
+			add_country_modifier = {
+				name = hun_mod_hegemon
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 }
 
@@ -445,7 +529,101 @@ hun_mil_3 = {
 		}
 		effect = {
 			add_prestige = 5
-			add_mil_power = 25
+			add_mil_power = 20
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+
+	hun_build_roads = {
+		icon = mission_pol_tend_east
+		required_missions = { hun_secure_carpathia }
+		position = 4
+		provinces_to_highlight = {
+			owned_by = ROOT
+			NOT = {
+				has_building = gravel_road
+			}
+			ROOT = {
+				NOT = {
+					num_of_owned_provinces_with = {
+						value = 10
+						has_building = gravel_road
+					}
+				}
+			}
+		}
+		trigger = {
+			num_of_owned_provinces_with = {
+				value = 10
+				has_building = gravel_road
+			}
+		}
+		effect = {
+			add_adm_power = 20
+			add_country_modifier = {
+				name = hun_mod_roads
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
+	}
+
+	hun_great_power = {
+		icon = balance_of_power
+		required_missions = { hun_take_wallachia }
+		position = 7
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = Emperor
+						has_dlc = "Rights of Man"
+					}
+				}
+				is_great_power = yes
+			}
+			else = {
+				if = {
+					limit = {
+						exists = RUM
+					}
+					army_strength = {
+						who = RUM
+						value = 0.75
+					}
+				}
+				if = {
+					limit = {
+						exists = AVR
+					}
+					army_strength = {
+						who = AVR
+						value = 0.75
+					}
+				}
+				emperor = {
+					ROOT = {
+						army_strength = {
+							who = PREV
+							value = 0.75
+						}
+					}
+				}
+			}
+		}
+		effect = {
+			add_dip_power = 25
+			add_country_modifier = {
+				name = hun_mod_power
+				duration = 14600
+			}
 		}
 		ai_weight = {
 			factor = 75	#Default
@@ -456,6 +634,29 @@ hun_mil_3 = {
 		icon = mission_conquer_5_states
 		required_missions = { hun_city_constantinople }
 		position = 9
+		provinces_to_highlight = {
+			area = macedonia_area
+			NOT = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		trigger = {
+			macedonia_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			add_mil_power = 10
+			add_prestige = 5
+			add_country_modifier = {
+				name = hun_mod_macedon
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 }
 
@@ -497,8 +698,7 @@ hun_mil_4 = {
 			}
 		}
 		effect = {
-			add_prestige = 5
-			add_mil_power = 25
+			add_mil_power = 15
 			slovakia_area = {
 				limit = {
 					NOT = { is_core = ROOT }
@@ -530,27 +730,213 @@ hun_mil_4 = {
 		icon = alpine_fortifications
 		required_missions = { hun_take_nitra hun_take_maramaros}
 		position = 3
+		provinces_to_highlight = {
+			owned_by = ROOT
+			NOT = {
+				is_core = ROOT
+			}
+		}
+		trigger = {
+			overextension_percentage = 0
+		}
+		effect = {
+			add_adm_power = 25
+			add_legitimacy = 5
+			add_country_modifier = {
+				name = hun_mod_secured
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 
 	hun_fortify_realm = {
 		icon = protect_against_the_turks
 		required_missions = { hun_secure_carpathia }
+		provinces_to_highlight = {
+			region = carpathia_region
+			owned_by = ROOT
+			has_fort_building_trigger = no
+			ROOT = {
+				NOT = {
+					num_of_owned_provinces_with = {
+						value = 3
+						region = carpathia_region
+						has_fort_building_trigger = yes
+					}
+				}
+			}
+		}
+		trigger = {
+			num_of_owned_provinces_with = {
+				value = 3
+				region = carpathia_region
+				has_fort_building_trigger =  yes
+			}
+		}
+		effect = {
+			add_mil_power = 20
+			carpathia_region = {
+				if = {
+					limit = {
+						has_fort_building_trigger = yes
+						NOT = {
+							has_province_modifier = hun_mod_fort
+						}
+					}
+					add_province_modifier = {
+						name = hun_mod_fort
+						duration = 7300
+					}
+				}
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 	
 	hun_push_back_avars = {
 		icon = mission_non-western_cavalry_raid
 		required_missions = { hun_fortify_realm hun_mobilize_army }
+		provinces_to_highlight = {
+			OR = {
+				province_id = 158
+				province_id = 4128
+			}
+			NOT = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		trigger = {
+			158 = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+			4128 = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			add_mil_power = 25
+			add_prestige = 10
+			add_country_modifier = {
+				name = hun_mod_defeated_avars
+				duration = 7300
+			}
+			wallachia_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 
 	hun_take_wallachia = {
 		icon = fortress_of_belgrade
 		required_missions = { hun_push_back_avars }
-
+		provinces_to_highlight = {
+			area = wallachia_area
+			NOT = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		trigger = {
+			158 = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+			4128 = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			add_mil_power = 20
+			if = {
+				limit = { exists = BUL }
+				add_casus_belli = {
+					type = cb_vassalize_mission
+					target = BUL
+					months = 300
+				}
+			}
+			moldavia_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			bulgaria_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			silistria_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 
 	hun_take_bulgaria = {
 		icon = mission_crusade_for_varna
 		required_missions = { hun_take_wallachia }
+		provinces_to_highlight = {
+			OR = {
+				owned_by = BUL
+				area = bulgaria_area
+				area = silistria_area
+			}
+			NOT = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		trigger = {
+			OR = {
+				BUL = {
+					vassal_of = ROOT
+				}
+				AND = {
+					bulgaria_area = {
+						type = all
+						country_or_non_sovereign_subject_holds = ROOT
+					}
+					silistria_area = {
+						type = all
+						country_or_non_sovereign_subject_holds = ROOT
+					}
+				}
+
+			}
+		}
+		effect = {
+			add_mil_power = 20
+			add_prestige = 5
+			thrace_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 
 	hun_city_constantinople = {
@@ -565,7 +951,22 @@ hun_mil_4 = {
 			}
 		}
 		effect = {
-			
+			add_legitimacy = 15
+			add_prestige = 10
+			macedonia_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			hudavendigar_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
 		}
 		ai_weight = {
 			factor = 75	#Default
@@ -575,6 +976,32 @@ hun_mil_4 = {
 	hun_asia_minor = {
 		icon = mission_non-western_soldiers
 		required_missions = { hun_city_constantinople }
+		provinces_to_highlight = {
+			region = anatolia_region
+			NOT = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		trigger = {
+			num_of_owned_provinces_with = {
+				value = 10
+				region = anatolia_region
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			add_army_tradition = 10
+			anatolia_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 }
 
@@ -601,6 +1028,7 @@ hun_mil_5 = {
 			}
 		}
 		effect = {
+			add_mil_power = 15
 			1952 = {
 				add_province_modifier = {
 					name = "hun_mod_fort"
@@ -618,25 +1046,110 @@ hun_mil_5 = {
 		required_missions = { hun_secure_carpathia }
 		position = 4
 		trigger = {
-			army_size_percentage = 100
+			army_size_percentage = 1
+		}
+		effect = {
+			add_mil_power = 50
+			add_country_modifier = {
+				name = hun_mod_mobilized
+				duration = 14600
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
 		}
 	}
 
 	hun_black_army = {
 		icon = gory_to_the_black_army
 		required_missions = { hun_mobilize_army }
+		trigger = {
+			OR = {
+				has_country_modifier = hun_black_army
+				has_reform = black_army_reform
+				absolutism = 80
+			}
+			land_morale = 4
+		}
+		effect = {
+			add_army_tradition = 15
+			add_army_professionalism = 0.05
+			add_country_modifier = {
+				name = hun_supreme_black_army
+				duration = 7300
+			}
+		}
 	}
 
 	hun_take_moldavia = {
 		icon = mission_cannons_firing
 		required_missions = { hun_take_wallachia }
 		position = 7
+		provinces_to_highlight = {
+			area = moldavia_area
+			NOT = {
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		trigger = {
+			moldavia_area = {
+				type = all
+				country_or_non_sovereign_subject_holds = ROOT
+			}
+		}
+		effect = {
+			add_prestige = 5
+			add_mil_power = 20
+			yedisan_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 
 	hun_bulwark_christianity = {
 		icon = shield_of_christendom
 		required_missions = { hun_take_moldavia hun_asia_minor }
 		position = 10
+		provinces_to_highlight = {
+			
+		}
+		trigger = {
+			if = {
+				limit = {
+					exists = RUM
+				}
+				army_strength = {
+					who = RUM
+					value = 2
+				}
+			}
+			if = {
+				limit = {
+					exists = AVR
+				}
+				army_strength = {
+					who = AVR
+					value = 2
+				}
+			}
+		}
+		effect = {
+			add_prestige = 10
+			add_country_modifier = {
+				name = hun_bulwark_of_christianity
+				duration = 7300
+			}
+		}
+		ai_weight = {
+			factor = 75	#Default
+		}
 	}
 }
 
@@ -959,7 +1472,7 @@ hun_admin_4 = {
 
 	# Development Missions
 	hun_transdanubian_agriculture = {
-		icon = mission_pol_tend_east
+		icon = mission_peasantry
 		required_missions = {  }
 		position = 11
 		provinces_to_highlight = {
@@ -1070,7 +1583,18 @@ hun_admin_5 = {
 		position = 13
 		required_missions = { hun_improve_economy }
 		provinces_to_highlight = {
-			
+			owned_by = ROOT
+			NOT = {
+				has_manufactory_trigger = yes
+			}
+			ROOT = {
+				NOT = {
+					num_of_owned_provinces_with = {
+						value = 5
+						has_manufactory_trigger = yes
+					}
+				}
+			}
 		}
 		trigger = {
 			has_institution = manufactories
@@ -1095,10 +1619,11 @@ hun_admin_5 = {
 		icon = industrialized_rhineland
 		required_missions = { hun_manufactories }
 		provinces_to_highlight = {
-			
+
 		}
 		trigger = {
 			has_institution = industrialization
+			
 		}
 		effect = {
 			add_dip_power = 25
@@ -1112,7 +1637,18 @@ hun_admin_5 = {
 		icon = w_railroad
 		required_missions = { hun_industry }
 		provinces_to_highlight = {
-			
+			owned_by = ROOT
+			NOT = {
+				has_building = railroad
+			}
+			ROOT = {
+				NOT = {
+					num_of_owned_provinces_with = {
+						value = 10
+						has_building = railroad
+					}
+				}
+			}
 		}
 		trigger = {
 			num_of_owned_provinces_with = {
