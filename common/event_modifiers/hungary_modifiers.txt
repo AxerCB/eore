@@ -1,5 +1,5 @@
 hun_mod_gold = {
-	inflation_reduction = 5
+	inflation_reduction = 0.05
 	gold_depletion_chance_modifier = -0.25
 }
 hun_mod_fiume = {
@@ -51,6 +51,10 @@ hun_mod_fort = {
 hun_mod_roads = {
 	global_prov_trade_power_modifier = 0.1
 	movement_speed = 0.15
+}
+hun_mod_industrialized = {
+	production_efficiency = 0.1
+	global_trade_goods_size_modifier = 0.05
 }
 hun_mod_railroads = {
 	local_friendly_movement_speed = 0.15

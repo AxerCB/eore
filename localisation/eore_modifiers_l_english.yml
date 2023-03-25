@@ -59,6 +59,8 @@
  desc_hun_mod_fort:0 "This province has been fortified to defend the realm."
  hun_mod_roads:0 "Road Network"
  desc_hun_mod_roads:0 "The nation has built a road network using the latest technologies, providing a boost to troop movement and trade."
+ hun_mod_industrialized:0 "Industrialized Nation"
+ desc_hun_mod_industrialized:0 "The nation has fully industrialized, allowing for a far more efficient production sector."
  hun_mod_railroads:0 "Railroad Network"
  desc_hun_mod_railroads:0 "An advanced railroad network has been built leading to a great increase in logistics."
  hun_mod_secured:0 "Carpathia Secured"
