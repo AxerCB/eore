@@ -171,7 +171,7 @@ hun_mil_1 = {
 			}
 			military_strength = {
 				who = VEN
-				value = 1.5
+				value = 2
 			}
 		}
 		effect = {
@@ -645,6 +645,7 @@ hun_mil_3 = {
 			
 		}
 		trigger = {
+			diplomatic_reputation = 3
 			if = {
 				limit = {
 					OR = {
@@ -655,29 +656,11 @@ hun_mil_3 = {
 				is_great_power = yes
 			}
 			else = {
-				if = {
-					limit = {
-						exists = RUM
-					}
-					army_strength = {
-						who = RUM
-						value = 0.75
-					}
-				}
-				if = {
-					limit = {
-						exists = AVR
-					}
-					army_strength = {
-						who = AVR
-						value = 0.75
-					}
-				}
 				emperor = {
 					ROOT = {
 						army_strength = {
 							who = PREV
-							value = 0.75
+							value = 1
 						}
 					}
 				}
@@ -1733,7 +1716,8 @@ hun_admin_5 = {
 		icon = mission_pol_breadbasket_europe
 		required_missions = { hun_transdanubian_agriculture }
 		provinces_to_highlight = {
-
+			owned_by = ROOT
+			trade_goods = grain
 		}
 		trigger = {
 			ROOT = {
