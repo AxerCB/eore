@@ -1,0 +1,83 @@
+ven_1 = {
+	slot = 1
+	generic = no
+	ai = yes
+	potential = {
+		tag = VEN
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	ven_patriarch = {
+		icon = crush_heretic_strongholds
+	}
+	ven_italian_wars = {
+		icon = mission_italian_condottiere
+	}
+	ven_star_fort = {
+		icon = dutch_formosa
+	}
+	ven_milan = {
+		icon = seize_lombardy
+	}
+	ven_genoa = {
+		icon = mission_raid_on_genoa
+	}
+	ven_florence = {
+		icon = conquer_tuscany
+	}
+	ven_naples = {
+		icon = union_with_naples
+	}
+	ven_italy = {
+		icon = terra_santa
+	}
+	ven_aferikia_isles = {
+		icon = mission_seize_the_isles
+	}
+	ven_aferikia_mainland = {
+		icon = mission_control_the_barbary_coast
+	}
+	ven_papal_question = {
+		icon = answer_the_roman_question
+	}
+	ven_storm_zara = {
+		icon = dalmatian_conquest
+	}
+	ven_lezhe = {
+		icon = mission_protect_albania
+	}
+	ven_purchase_chios = {
+		icon = mission_dominate_the_mediterranean
+	}
+	ven_phoenix_fate = {
+		icon = mission_plc_purple_phoenix
+	}
+	ven_alexandria = {
+		icon = mission_conquer_alexandria
+	}
+	ven_levantine_coast = {
+		icon = jerusalem
+	}
+	ven_suez_canal = {
+		icon = mission_dharma_mission_arabian_trade
+	}
+	ven_high_seas = {
+		icon = mission_establish_high_seas_navy
+	}
+	ven_india = {
+		icon = mission_indian_trade_company
+	}
+	ven_malaya = {
+		icon = mission_malayan_viceroyalty
+	}
+	ven_cathay = {
+		icon = mission_trade_with_cathay
+	}
+	ven_japan = {
+		icon = mission_trade_with_japan
+	}
+	# wikipedia history of silk, historical production in northern italy
+	ven_italian_silk = {
+		icon = mission_valencian_silk
+	}
+}
